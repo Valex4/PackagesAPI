@@ -24,13 +24,13 @@ loadRouter.get("/", async function loadEvent(req, res) {
 });*/
 
 
-import amqp from "amqplib";
+/*import amqp from "amqplib";
 import express from "express";
 
 export const loadRouter = express.Router();
 const rabbitSettings = {
   protocol: "amqp",
-  hostname: "34.235.104.181",
+  hostname: "0.0.0.0",
   port: 5672,
   username: "guest",
   password: "guest",
@@ -41,17 +41,20 @@ async function connect() {
         const conn = await amqp.connect(rabbitSettings);
         console.log('Conexión exitosa')
         const channel = await conn.createChannel()
-        console.log ("Canal creado exitosamente")
+        console.log ("Canal creado exitosamente en consumidor")
 
         channel.consume(queue, (msn:any)=> {
-            console.log(msn.content.toString())
+          const contenido =  msn.content.toString();
+          const objetoRecibido = JSON.parse(contenido);
+
+            console.log(objetoRecibido)
+            //console.log(msn.content.toString());
             channel.ack(msn)
         })
         
-
     } catch (error) {
         console.error('Error => ', error)    
     }
 }
 
-connect();
+connect();*/
